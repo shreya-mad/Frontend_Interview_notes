@@ -212,6 +212,58 @@ function App() {
 export default App;
 
 
+3.what is Debouncer?
+ANS:-when we search something on google then on every alphabet type it shows some suggection and thart comes by api call.so if we type anything like js question the it call api on every alphabet call so here total api call will be 11(like j js js  js i js in.......) but this will not be good practice becuase calling api for 11 only for searching any word is not good so for resolving this issue developer thinks that if user is continuosly typing anything then dont call api and if user stop typing even for some miliseconds as well then simply call api and this concept is called as debouncing.
+A debouncer is like a pause button.
+It waits until you stop doing something before it runs the function.
+
+Example: Typing in Search Box
+Without debounce:
+Every letter you type → sends a request.
+Typing "apple" → 5 requests (a, ap, app, appl, apple).
+
+With debounce (say 500ms):
+It waits until you stop typing for 0.5 seconds.
+Only 1 request → "apple".
+
+debounce syntax is below but is it not predefined, it is user defined function so If you use a library like lodash → it already has a ready-made debounce function you can import and use.
+
+function debounce(function to which we want some delay,delay time);
+
+below  is the whole code for debounce for searching anything
+
+import React, { useState, useEffect } from "react";
+function  funDebounce(value,delay){
+  const[debounceText,setDebounceText]=useState(value);
+  useEffect(()=>{
+     const handle=setTimeout(()=>{
+      setDebounceText(value);
+     },delay);
+        return () => {
+      clearTimeout(handler);
+    };
+  },[value,delay]);
+  return debounceText;
+}
+const debounce=()=>{
+  const[text,setText]=useState("");
+const TextDebounce=funDebounce(text,5000);
+  useEffect(()=>{
+    console.log("searching for"+ TextDebounce);
+    <!-- here we wil call our api -->
+  },[TextDebounce]);
+return (
+  <input type='text' onChange={(e)=>setText(e.target.value)} value={text} placehoder='please search anything'>
+)
+}
+export default debounce;
+
+
+4.
+
+
+
+
 
 
 
