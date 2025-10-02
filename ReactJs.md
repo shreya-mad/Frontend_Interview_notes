@@ -299,14 +299,41 @@ parent to child most direct data transfer without passing to other child compone
 
  parent- context provider
  child4(child most)-context consumer
- 
+
+ Simple step for useContext
+ FIRST:- create useContext,we can create it as many as we want.....like   
+ const UserContext=createContext();
+ SECOND:- wrap all the childs inside the provider which wants to become consumer and then pass the value that we want to pass
+ like.....
+const [user,setUser]=useState({name:"shreya"});
+ <UserContext.Provider value={user}> 
+    <Child/>
+ </UserContext.Provider> 
+ if we have created more than one context then simply write code of wrapping up child into provider into another wrapping up into provider....like below
+ <UserContext.Provider value={user}>
+     <ThemeContext.Provider value=({theme,setTheme})> 
+        <Child/>
+     </ThemeContext.Provider>
+ </UserContext.Provider>
+ dont forget to export that created context like here export {UserContext}; 
+ we can pass many data as i want like value=({user,setUser})
+ then export that in consumer like 
+ const {user,setUser}=useContext(UserContext);
+ THIRD:-consume inside the consumer
+ first import that UserContext inside the required child then simply take that value with the help of useContext..like below
+
+ import {UserContext} from 'app';
+ const user =useContext(UserContext);
+ <>this  is {user.name}</>
+
+
  below is the code
 PARENT
  import {useState, createContext} from 'react';
  import Child1 from 'child';
  const UserContext=createContext();
  function parent(){
-  const [user,setUser]=useState({name:"shreya});
+  const [user,setUser]=useState({name:"shreya"});
    return(
     <>
     <UserContext.Provider value={user}>
@@ -315,13 +342,14 @@ PARENT
    )
  }
  export default app; 
+ export UserContex;
 CHILD1
  import react from 'react';
  function Child1()
  {
 return(
   <>
-  <Child2>
+  <Child2/>
   </>
 )
  }
@@ -333,7 +361,7 @@ import react from 'react';
  {
 return(
   <>
-  <Child2>
+  <Child3/>
   </>
 )
  }
