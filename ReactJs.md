@@ -316,7 +316,7 @@ const [user,setUser]=useState({name:"shreya"});
      </ThemeContext.Provider>
  </UserContext.Provider>
  dont forget to export that created context like here export {UserContext}; 
- we can pass many data as i want like value=({user,setUser})
+ we can pass many data as i want like value={{user,setUser}}
  then export that in consumer like 
  const {user,setUser}=useContext(UserContext);
  THIRD:-consume inside the consumer
