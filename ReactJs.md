@@ -259,7 +259,136 @@ return (
 export default debounce;
 
 
-4.
+4.Redux toolkit?
+ANS:-redux is a state management library.it helps us to manage state of our application in a centralised store or we can say global storage instead of spreading it in many components.
+state simply mean all the data used by the application.
+👉 In simple words:
+It’s like having one big container (store) for all your important data, and every component can:
+
+Read from it
+Update it (in a controlled way)
+
+terms used in redux
+-Action
+-Reducer
+-Slice
+-Store
+-State
+
+react reudx was used earliar and currently redux toolkit(modern redux) is used
+
+code of counter with the helps of redux toolkit
+==> onClick-->handleClick()-->Action Dispatch-->Store-->Reducer-->Logic Execute-->Dtore-->state update->UI update
+
+TRANSFORMATION OF DATA FROM PARENT TO CHILD(PROPS)
+TRANSFORMATION OF DATA FROM CHILD TO PARENT(STATE LIFTING)
+
+5.useContext hook?
+ANS:-it is a kind of hook which is used to sent data from parent compoent to its child most component without passing to the all child component which comes in between parent to child most component.
+useContext is used to overcome prop drilling problem so prop drilling simply mean data will be going on all the child coponents same as drill(pechkas).
+
+whole process of useCotext would be in 3 steps-
+1.create context
+2.provide
+3.consume
+
+parent-->Child1-->child2-->child3-->child4(child most)
+  |_ _ _ _ _ _ __ _ _ _ _  _ __ _ _ _ _|
+parent to child most direct data transfer without passing to other child components
+ here parent will provide context and then any child component which want to take that data of parent will become consumer and consume that data
+
+ parent- context provider
+ child4(child most)-context consumer
+ 
+ below is the code
+PARENT
+ import {useState, createContext} from 'react';
+ import Child1 from 'child';
+ const UserContext=createContext();
+ function parent(){
+  const [user,setUser]=useState({name:"shreya});
+   return(
+    <>
+    <UserContext.Provider value={user}>
+      <Child1/>
+    <UserContext.Provider/>
+   )
+ }
+ export default app; 
+CHILD1
+ import react from 'react';
+ function Child1()
+ {
+return(
+  <>
+  <Child2>
+  </>
+)
+ }
+ export default Child1;
+
+CHILD2
+import react from 'react';
+ function Child2()
+ {
+return(
+  <>
+  <Child2>
+  </>
+)
+ }
+ export default Child2;
+
+ CHILD3
+import react,{useContext} from 'react';
+import {UserContext} from '../parent';
+ function Child3(){
+  const user=useContext(UserContext);
+return(
+  <>
+  data:{use.name};
+  </>
+)
+ }
+ export default Child3;
+
+ 6.what iss vanilla js?
+ ANS:- vanilla js is nothing but javScript without any framework like react js,vue.js,jQuery,Three.js
+
+7.Why use React instead of plain JavaScript (Vanilla JS)?
+Ans:- We use React instead of plain JavaScript because:
+Easier UI updates (Virtual DOM)
+Reusable components
+Better state management
+Supports SPA (no reload navigation)
+Cleaner, maintainable, scalable code
+
+
+8.What is a Component in React?
+Ans:-A component in React is like a small, reusable building block of a user interface (UI).
+Each component is independent and manages its own structure, styling, and behavior.
+You can combine many components to build a complete application.
+types-
+a.Functional component(js function which returns JSX).
+b.class component
+
+
+9.what is functional componenet?
+ANS:- functional component is nothing but a type of component which is similar to javascript function.it takes props as an input and return JSX.it used Hooks for variour operations like state management,navigation using react router.
+
+10.What is class component?
+ANS:-as its name includes class soit totally related to class,so class component is nothing but s class which render() method and return UI similar to functional component.
+
+like below one is using class component
+class Hello extends react.Component{
+  render(){
+    return <>hello {this.props.name}</>
+  }
+}
+
+so class components used before Hooks.before hooks state mangement and life cycle methods could handled by only class component.
+
+
 
 
 
